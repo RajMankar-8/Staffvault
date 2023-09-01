@@ -1,6 +1,6 @@
 # Staffvault Organization Management App
 
-Welcome to the OStaffvault rganization Management App! This application allows you to manage organizations and their related data.
+Welcome to the Staffvault rganization Management App! This application allows you to manage organizations and their related data.
 
 ## Accessing the App
 
