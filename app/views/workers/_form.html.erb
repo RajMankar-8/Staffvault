@@ -1,0 +1,155 @@
+<%= form_with model: worker  do |form| %>
+<div class="row ">
+	<div class="col-lg-4">
+		<div class="form-group">
+			<span>
+				<%= form.label :first_name, class:'mb-2 fw-bold' %>
+				<img width="24" height="24" src="https://img.icons8.com/ios/50/user-male-circle--v1.png" alt="user-male-circle--v1"/ class="ms-2 mb-1">
+			</span>
+			<%= form.text_field :first_name, class:'form-control form-control-lg rounded-0' %>
+			<% @worker.errors.full_messages_for(:first_name).each do |message| %>
+			<p class="text-danger"> <%= message %></p>
+			<% end %>
+		</div>
+	</div>
+	
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+	<div class="col-lg-4">
+		<div class="form-group">
+			<%= form.label :last_name, class:'mb-2 fw-bold' %>
+			<%= form.text_field :last_name, class:'form-control form-control-lg rounded-0' %>
+			<% @worker.errors.full_messages_for(:last_name).each do |message| %>
+			<p class="text-danger"> <%= message %></p>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="col-lg-4">
+		<div class="form-group">
+			<span>
+					<%= form.label :date_of_birth, class:'mb-2 fw-bold' %>
+					<img width="25" height="25" src="https://img.icons8.com/ios-filled/50/person-calendar.png" alt="person-calendar"/ class="ms-2 mb-1">
+			</span>
+			<%= form.date_field :date_of_birth, class:'form-control form-control-lg rounded-0' %>
+			<% @worker.errors.full_messages_for(:date_of_birth).each do |message| %>
+				<p class="text-danger"> <%= message %></p>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="col-lg-4 mt-3">
+		<span>
+			<%= form.label :Job_category_id, class:"form-label fw-bold" %>
+			<img width="24" height="24" src="https://img.icons8.com/material-outlined/24/sorting-answers.png" alt="sorting-answers"/ class="ms-1">
+			<span>
+				<%= form.select :job_category_id, options_for_select(current_user.job_categorys.pluck(:name, :id)), {prompt: 'Select Jobcategory'}, { class: 'form-control form-control-lg rounded-0'} %>
+				<% @worker.errors.full_messages_for(:job_category_id).each do |message| %>
+				<p class="text-danger"> <%= message %></p>
+				<% end %>
+			</div>
+			
+		<div class="col-lg-4 mt-3">
+		  <div class="form-group"> 
+		    <span> 
+		      <%= form.label :about, class: 'mb-2 fw-bold' %>
+		      <img width="25" height="25" src="https://img.icons8.com/ios/50/about.png" alt="about" class="ms-1" />
+		    </span>
+		    <%= form.text_area :about, class: 'form-control form-control-lg rounded-0' %>
+		    <% @worker.errors.full_messages_for(:about).each do |message| %>
+		      <p class="text-danger"> <%= message %></p>
+		    <% end %>
+	   </div>
+	</div>
+
+
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="form-group">
+					<span>
+							<%= form.label :email, class:'mb-2 fw-bold' %>
+							<img width="25" height="25" src="https://img.icons8.com/ios/50/new-post--v1.png" alt="new-post--v1"/ class="ms-2">
+					</span>
+					<%= form.email_field :email, class:'form-control form-control-lg rounded-0' %>
+					<% @worker.errors.full_messages_for(:email).each do |message| %>
+					<p class="text-danger"> <%= message %></p>
+					<% end %>
+				</div>
+			</div>	
+		</div>
+
+		<div class="row mt-3">
+			<div class="col-lg-6">
+				<div class="form-group">
+					<span>
+						<%= form.label :address_line1, class:'mb-2 fw-bold' %>
+						<img width="28" height="28" src="https://img.icons8.com/ios/50/address--v1.png" alt="address--v1" class="ms-2 mb-1" />
+					</span>
+					<%= form.text_field :address_line1, class:'form-control form-control-lg rounded-0' %>
+					<% @worker.errors.full_messages_for(:address_line1).each do |message| %>
+					<p class="text-danger"> <%= message %></p>
+					<% end %>
+				</div>
+			</div>	
+
+			<div class="col-lg-6">
+				<div class="form-group">
+					<span>
+					<%= form.label :state, class:'mb-2 fw-bold' %>
+						<img width="30" height="30" src="https://img.icons8.com/ios/50/country--v1.png" alt="country--v1"/ class="ms-2 mb-1">
+					</span>
+					<%= form.text_field :state, class:'form-control form-control-lg rounded-0' %>
+					<% @worker.errors.full_messages_for(:state).each do |message| %>
+					<p class="text-danger"> <%= message %></p>
+					<% end %>
+				</div>
+			</div>	
+		</div>
+
+		<div class="row mt-3">
+			<div class="col-lg-4">
+				<div class="form-group">
+					<span>
+					<%= form.label :pincode, class:'mb-2 fw-bold' %>
+						<img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/postcode.png" alt="postcode" class="ms-2" />
+					</span>
+					<%= form.text_field :pincode, class:'form-control form-control-lg rounded-0' %>
+					<% @worker.errors.full_messages_for(:pincode).each do |message| %>
+					<p class="text-danger"> <%= message %></p>
+					<% end %>
+				</div>
+			</div>	
+
+			<div class="col-lg-4">
+				<div class="form-group">
+					<span>
+					<%= form.label :city, class:'mb-2 fw-bold' %>
+						<img width="30" height="30" src="https://img.icons8.com/ios/50/city.png" alt="city" class="ms-2" />
+					</span>
+					<%= form.text_field :city, class:'form-control form-control-lg rounded-0' %>
+					<% @worker.errors.full_messages_for(:city).each do |message| %>
+					<p class="text-danger"> <%= message %></p>
+					<% end %>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="form-group">
+					<span>
+					<%= form.label :country, class:'mb-2 fw-bold' %>
+						<img width="30" height="30" src="https://img.icons8.com/ios/50/around-the-globe.png" alt="around-the-globe" class="ms-2" />
+					</span>
+					<%= form.text_field :country, class:'form-control form-control-lg rounded-0' %>
+					<% @worker.errors.full_messages_for(:country).each do |message| %>
+					<p class="text-danger"> <%= message %></p>
+					<% end %>
+				</div>
+			</div>	
+		</div>
+		<div class="row">
+			<div class="col-lg-12 mt-4">
+				<%= form.submit "Submitd", class: 'btn btn-primary btn-lg rounded-0' %>
+				<%= link_to "back to Employee", workers_path, class:"btn btn-outline-primary btn-lg rounded-0" %>
+			</div>
+		</div>
+		<% end %>
+	</div>

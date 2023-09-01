@@ -1,0 +1,59 @@
+<%= flash[:notice]%>
+<div class="mt-4 mb-5">
+  <div class="card-body">
+    <h2 class="text-center fw-bold"><%= @job_category.name %></h2>
+  </div>
+  <div class="text-center mt-5">
+    <ul class="list-inline list-unstyled">
+            <% current_user.job_categorys.each do |job_category| %>
+                <li class="list-inline-item mx-3 p-2 m-2 hover border">
+                    <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/developer.png" alt="developer"/>
+                    <%= link_to job_category.name , job_category_path(job_category), class:'text-decoration-none text-dark fw-bold ' %></li>
+            <% end %>
+    </ul>
+  </div>
+</div>
+  
+<div class="container">
+    <div class="row gy-3">
+        <% @workers.each do |worker| %>
+        <div class="col col-4">
+            <div class="card mb-3 hover rounded-4 shadow" style="max-width: 540px;" onclick="redirectToNewWorker()">
+                <div class="row g-0">
+                    <div class="col-md-4 position-relative">
+                        <%= image_tag "user.png", class: "img-fluid rounded-circle my-4 ms-2 border" %>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= worker.name %></h5>
+                            <p class="card-text"><%= worker.about %></p>
+                            <div>
+                                <small>
+                                    <img width="34" height="34" src="https://img.icons8.com/color/48/gmail-new.png" alt="gmail-new" class="ms-2 hover" />
+                                </small>
+                                <small>
+                                    <img width="34" height="34" src="https://img.icons8.com/color/48/telegram-app--v1.png" alt="telegram-app--v1" class="ms-2 hover" />
+                                </small>
+                                <small>
+                                    <img width="34" height="34" src="https://img.icons8.com/fluency/34/facebook-new.png" alt="facebook-new" class="ms-2 hover" />
+                                </small>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white">
+                        <small class="text-muted">
+                            <%= link_to "About", worker_path(worker), class: "card-link text-decoration-none" %>
+                        </small>
+                        <small class="text-muted ms-3">
+                            <%= link_to "Delete", worker_path(worker), class: "card-link text-decoration-none", method: :delete, data: { confirm: "Are you sure to delete this worker" } %>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
+
+<%= paginate @workers %>

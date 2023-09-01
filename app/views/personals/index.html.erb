@@ -1,0 +1,44 @@
+<div class="col-lg-12">
+	<%= flash[:notice]%>
+	<div class="card rounded-0mt-5 mb-5">
+		<div class="card-body">
+			<h2 class="text-center">Listing Employees Personal Information</h2>
+		</div>
+	</div>
+
+
+	<%= link_to "Create new Document", new_personal_path , class: "btn btn-primary btn-lg  mb-4 rounded-0"%>
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Doc type</th>
+				<th>Worker</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @personals.each do |personal| %>
+			<tr>
+				<td><%= personal.name %></td>
+				<td><%= personal.doc_type %></td>
+				<td><%= link_to personal.worker.name, worker_path( personal.worker)%></td>
+				
+				<td>
+					<div class="dropdown">
+						<button class="btn btn-danger btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Action
+						</button>
+						<ul class="dropdown-menu">
+							<li><%= link_to "edit" ,edit_personal_path(personal), class: "dropdown-item" %></li>
+							<li><%= link_to "View" ,personal_path(personal) , class: "dropdown-item" %></li>
+							<li><%= link_to "Delete" , personal_path(personal) , class: "dropdown-item" , method: :delete, data:{confirm: "Are you sure to delete this worker"} %> </li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+
+	</table>
+</div> 

@@ -1,0 +1,85 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2 p-3">
+  <div class="container-fluid">
+    <a class="navbar-brand p-0" href="#">
+      <% if current_user.present? && current_user.organization.present? %>
+          <%= link_to current_user.organization.name, root_path, class: 'navbar-brand navbar-text-style' %>
+      <% else %>
+        <%= link_to "StaffVault", root_path, class: 'navbar-brand navbar-text-style' %>
+      <% end %>
+    </a> 
+    <a class="nav-item mx-2">
+      <%= link_to "Home", root_path, class: 'nav-link text-white active' %>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
+          <li>
+            <% unless current_user.organization.present? %>
+              <%= link_to "Create Organization", new_organization_path, class: "nav-link navbar-text-style btn btn-outline-danger text-white" %>
+            <% end %>
+          </li>
+          <% if current_user.organization.present? %>
+            <li>
+              <%= link_to "All Employees", workers_path, class: "nav-link navbar-text-style text-white" %>
+            </li>
+            <div class="dropdown mx-2">
+              <a class="btn btn-transparent text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Create 
+              </a>
+              <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+                <li>
+                  <a class="dropdown-item px-3" href="#">
+                    <%= link_to "Create Category", new_job_category_path, class: "text-decoration-none text-black fw-bold" %>
+                  </a>
+                </li>
+                <li>
+                  <% if current_user.job_categorys.present? %>
+                    <a class="dropdown-item" href="#">
+                      <%= link_to "Create new Employee", new_worker_path, class: "text-decoration-none text-black fw-bold" %>
+                    </a>
+                  <% else %>
+                   <a class="dropdown-item" href="#">
+                      <%= link_to "Create new Employee", new_job_category_path, class: "text-decoration-none text-black fw-bold" %>
+                    </a>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+             <% if current_user.job_categorys.present? %>
+             <div class="dropdown">
+              <a class="btn px-2 btn-transparent text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Job Categories 
+              </a>
+              <ul class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink">
+                <li>
+                <% current_user.job_categorys.each do |job_category| %>
+                  <a class="dropdown-item " href="#">
+                     <%= link_to job_category.name, job_category_path(job_category), target: "_blank", class: "text-decoration-none text-black fw-bold" %>
+                  </a>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+            <% end %>
+            <li>
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link navbar-text-style text-white" %>
+            </li>
+            <li class="nav-item ms-3" style="display: flex; align-items: center;">
+              <%= search_form_for @q, url: :workers, html: { class: 'd-flex align-items-center' } do |form| %>
+                <%= form.text_field :first_name_cont, class: "form-control mr-2" %>
+                <%= form.submit "Search", class: "btn btn-primary ms-2" %>
+              <% end %>
+            </li>
+          <% end %>
+        <% else %>
+          <li>
+            <%= link_to "Sign in", new_user_registration_path, class: "nav-link navbar-text-style text-white" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

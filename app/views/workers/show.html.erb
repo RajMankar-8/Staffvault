@@ -1,0 +1,105 @@
+
+ 
+<div class="container px-5 py-1" style="background-color: #f8f9fa;">
+    <h1>Employee Profile</h1>
+    <ul class="list-inline employee-list">
+        <li class="list-inline-item mx-3">Personal</li>
+        <li class="list-inline-item mx-3">Job and Pay</li>
+        <li class="list-inline-item mx-3">Documents</li>
+        <li class="list-inline-item mx-3">Reminders</li>
+        <li class="list-inline-item mx-3">Records</li>
+        <li class="list-inline-item mx-3">journey</li>
+        <li class="list-inline-item mx-3">Time off</li>
+        <li class="list-inline-item mx-3">Benefits</li>
+        <li class="list-inline-item mx-3">Performance</li>
+    </ul>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-3 col border p-3 bg-white">
+               <% if @worker.personals.present? %>
+                      <% has_photo_id = false %>
+                      <% @worker.personals.each do |personal| %>
+                        <% if personal.doc_type == "Photo ID" %>
+                          <%= image_tag personal.image, class: "img-fluid rounded-circle my-4 border" %>
+                          <% has_photo_id = true %>
+                        <% end %>   
+                      <% end %>
+                      <% unless has_photo_id %>
+                        <%= image_tag "user.png", class: "img-fluid rounded-circle my-4 border" %>
+                      <% end %>
+                    <% else %>
+                      <%= image_tag "user.png", class: "img-fluid rounded-circle my-4 border" %>
+                    <% end %>
+                <div class="text-center">
+                    <span class="fw-bold fs-3">
+                        <%= @worker.name %>
+                    </span>
+                    <br>
+                    <span class="fw-bold text-muted text-center">
+                        <%= @worker.job_category.name %>
+                    </span>
+                </div>
+                <br>
+                <hr>
+                <ul class="list-group list-unstyled">
+                    <li class="text-muted pb-1">Email</li>
+                    <li class="mb-3"><%= @worker.email %></li>
+                    <li class="text-muted pb-1">DOB</li>
+                    <li class="mb-3"><%= @worker.date_of_birth %></li>
+                    <li class="text-muted pb-1">Address</li>
+                    <li class="mb-3"><%= @worker.address_line1 %></li>
+                    <li class="text-muted pb-1">Pincode</li>
+                    <li class="mb-3"><%= @worker.pincode %></li>
+                    <li class="text-muted pb-1">City</li>
+                    <li class="mb-3"><%= @worker.city %> </li>
+                    <li class="text-muted pb-1">State</li>
+                    <li class="mb-3"><%= @worker.state %></li>
+                    <li class="text-muted pb-1">Country</li>
+                    <li class="mb-3"><%= @worker.country %></li>
+                    <li><%= link_to "Edit", edit_worker_path(@worker), class: 'btn btn-outline-dark btn-lg rounded-0' %></li>
+                </ul>
+            </div>
+            <div class="col-8 col ms-auto bg-white">
+                <h1 class="text-center fw-bold">
+                    Documents<img src="https://img.icons8.com/ios/50/documents.png" class="rounded-circle mb-2 ms-2" width="32" height="32" alt="Avatar"/>
+                </h1>
+                <% if @worker.personals.present? %>
+                    <div class="container my-5">
+                        <div class="row gy-4">
+                            <% @worker.personals.each do |personal| %>
+                                <div class="col">
+                                    <div class="card h-100 mx-auto" style="width: 18rem;">
+                                        <% if personal.image.attached? %>
+                                            <%= image_tag personal.image, class: 'img-fluid' %>
+                                        <% end %>
+                                        <div class="card-body">
+                                            <h5 class="card-title"><%= personal.name %></h5>
+                                            <p class="card-text">
+                                                <span class="fw-bold">Document Type:</span>
+                                                <span><%= personal.doc_type %></span>
+                                            </p>
+                                        </div>
+                                        <div class="card-body">
+							                              <%= link_to "edit" ,edit_personal_path(personal), class: "card-link" %>
+							                              <%= link_to "View" ,personal_path(personal) , class: "card-link" %>
+							                              <%= link_to "Delete" , personal_path(personal) , class: "card-link" , method: :delete, data:{confirm: "Are you sure to delete this worker"} %>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+                <div class="mt-5 ">
+                	<div class="mb-3 text-center">
+                    	 <a href="http://localhost:3000/personals/new"><img width="42" height="42" src="https://img.icons8.com/color/48/add-rule.png" alt="add-rule"/></a>
+                    <%= link_to "Add Document", new_personal_path(worker_id: @worker.id), class: "text-decoration-none text-danger" %>
+                     </div>
+                     <br>
+                    <span class="fw-bold">About - </span> <%= @worker.about %><br><br>
+                    <%= link_to "Back", job_category_path(@worker.job_category), class: 'btn btn-dark btn-lg rounded-0 m-3' %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

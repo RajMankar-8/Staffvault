@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Join Us: Unlock a World of Possibilities at WebinaHub</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #4285F4, #DB4437, #F4B400, #0F9D58); 
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: black;
+      border-radius: 5px;
+      position: relative;
+    }
+
+    .header {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .content {
+      margin-top: 20px;
+      font-size: 18px;
+      color: white;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      background: linear-gradient(135deg, #4285F4, #DB4437, #F4B400, #0F9D58);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      font-weight: 600;
+    }
+
+    .button:hover {
+      transform: translateY(-10px) scale(1.1);
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 10px;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .icon {
+      display: inline-block;
+      font-size: 24px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .gmail-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 100px;
+      height: 100px;
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .gmail-icon svg {
+      width: 60px;
+      height: 60px;
+      fill: #DB4437;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="gmail-icon">
+      <img width="48" height="48" src="https://img.icons8.com/color/48/gmail-new.png" alt="gmail-new"/>
+    </div>
+    <div class="header">
+      <h1>Welcome to Our Web</h1>
+      <p>Dear <%= @email %></p>
+    </div>
+    <div class="content">
+      <p>Welcome to StaffVault We are thrilled to have you as a part of our community. Your journey with us begins here, and we're excited to help you achieve your goals.</p>
+
+  
+
+       <p>By confirming your email, you'll unlock full access to StaffVault's features, resources, and exclusive content. Here's a glimpse of what you can expect:</p>
+
+      <ul>
+        <li><span class="icon">&#xf061;</span> Discover Instant Insights</li>
+        <li><span class="icon">&#xf005;</span> Boost Productivity Anywhere</li>
+        <li><span class="icon">&#xf14a;</span> Connect and Collaborate Seamlessly</li>
+      </ul>
+
+      <p>To complete your account setup and confirm your email address, please click on the confirmation link below:</p>
+
+        <p align="center"><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token), class:"button" %></p>
+    </div>
+    <div class="footer">
+      <p>P.S. Stay connected with us on StaffVault for the latest updates, tips, and inspiration.</p>
+      <p><span class="icon">&#xf0e0;</span> Contact: StaffVault.com</p>
+    </div>
+  </div>
+</body>
+</html>
