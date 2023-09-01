@@ -1,24 +1,20 @@
-# README
+# Staffvault Organization Management App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to the OStaffvault rganization Management App! This application allows you to manage organizations and their related data.
 
-Things you may want to cover:
+## Accessing the App
 
-* Ruby version
+To access the app, please follow these steps:
 
-* System dependencies
+1. Open your web browser and go to the app's URL.
 
-* Configuration
+2. You will be prompted to log in. Use the following login credentials:
+   - **User ID:** admin1@gmail.com
+   - **Password:** 123456
 
-* Database creation
+3. After logging in, you will have access to the application's features.
+   
+- **Manage Organizations:** As an authenticated user, you can create, edit, and delete employee and their documents as needed .
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Thank you for using the Staffvault Organization Management App!
