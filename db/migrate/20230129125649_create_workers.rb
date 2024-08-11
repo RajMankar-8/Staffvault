@@ -10,8 +10,6 @@ class CreateWorkers < ActiveRecord::Migration[7.0]
       t.string :country
       t.string :pincode
       t.string :address_line1
-      t.references :job_category, null: false, foreign_key: true
-
       t.timestamps
     end
   end

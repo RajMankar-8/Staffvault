@@ -10,6 +10,14 @@ class Worker < ApplicationRecord
 	validates :email, presence:true
 	validates :date_of_birth, :job_category_id, :user_id, presence:true
 
+  validate :age_criteria
+
+  def age_criteria
+    if date_of_birth.present? && date_of_birth.to_date > 21.years.ago
+      errors.add(:date_of_birth, "Must be greater than 21")
+    end
+  end
+
    JOB_TITTlE = ['Software Engineer', 'Data Scientist', 'Network Administrator', 'Web Developer',
                  'IT Project Manager', 'Systems Analyst', 'Database Administrator','Cybersecurity Analyst',
                  'UI/UX Designer', 'DevOps Engineer', 'Cloud Solutions Architect', 'Quality Assurance Tester',

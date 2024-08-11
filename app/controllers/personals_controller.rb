@@ -5,18 +5,15 @@ class PersonalsController < ApplicationController
   # note : Personal = Document
 
 	def index
-		@job_categorys = JobCategory.all
 		@personals = Personal.all
 	end
 
 	def new
-		@job_categorys = JobCategory.all
 		@personal = Personal.new
 		@worker_id = params[:worker_id]
 	end
 
 	 def create
-    @job_categories = JobCategory.all
     @personal = Personal.new(personal_params)
     if @personal.save
     	@worker_reterive_id = @personal.worker_id
@@ -74,7 +71,6 @@ class PersonalsController < ApplicationController
   end
 
 	def set_personal
-		@job_categorys = JobCategory.all
 		@personal = Personal.find (params[:id])
 	rescue ActiveRecord::RecordNotFound => error
 		redirect_to personals_path , notice: error 
