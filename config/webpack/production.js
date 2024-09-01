@@ -1,5 +1,10 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'production'
+const { environment } = require('@rails/webpacker');
 
-const environment = require('./environment')
+// Update the node configuration to avoid errors related to unknown properties
+environment.config.node = {
+  __dirname: true,
+  __filename: true,
+  global: true,
+};
 
-module.exports = environment.toWebpackConfig()
+module.exports = environment.toWebpackConfig();
