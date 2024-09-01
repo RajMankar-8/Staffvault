@@ -33,3 +33,14 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+# Ensure Webpacker binstubs are not ignored
+!/bin/webpack
+!/bin/webpack-dev-server
