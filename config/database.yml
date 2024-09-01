@@ -10,9 +10,15 @@ default: &default
 
 development:
   <<: *default
+  database: Staffvault_development
 
 test:
   <<: *default
+  database: Staffvault_test
 
 production:
   <<: *default
+  database: Staffvault_production
+  username: staffvault
+  password: <%= ENV["Staffvault_DATABASE_PASSWORD"] %>
+
